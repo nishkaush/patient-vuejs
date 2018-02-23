@@ -11,6 +11,7 @@
       <div class="form-group col-md-5">
         <select id="medicineList" class="form-control myfields" v-model="medName">
           <option value="">Choose Medicine</option>
+          <option value="">--------------------</option>
           <option :value="med.name" v-for="med in allMedList" :key="med._id">{{med.name}} &nbsp;({{med.currentStock}})</option>
         </select>
       </div>
@@ -35,15 +36,20 @@
   </form>
 
 
-  <div class="buttons-div">
-
+  <div class="buttons-div d-none d-lg-block">
     <button @click.prevent="showDiag" class="btn btn-sm float-left"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>&nbsp;Back</button>
 
     <button @click.prevent="showTest" class="btn btn-sm float-right">Next&nbsp;<i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
 
     <button class="btn btn-sm quitbtn" @click.prevent="quitProcess">Quit Adding This User&nbsp;<i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
-
   </div>
+
+  <div class="buttons-div-second d-block d-lg-none">
+    <button @click.prevent="showDiag" class="btn btn-block"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>&nbsp;Back</button>
+    <button @click.prevent="showTest" class="btn btn-block">Next&nbsp;<i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
+    <button class="btn btn-block" @click.prevent="quitProcess">Quit Adding User&nbsp;<i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+  </div>
+
 </div>
 </template>
 
@@ -207,5 +213,13 @@ i:hover {
   font-family: avenir;
   color: #e35d6a;
   font-size: 0.9em;
+}
+
+.btn-block {
+  background: #20cec5;
+  padding: 1.5%;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 </style>

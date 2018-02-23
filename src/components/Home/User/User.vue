@@ -29,7 +29,8 @@ export default {
   components: {
     usersearch: UserSearch,
     useradd: UserAdd
-  }
+  },
+
 }
 </script>
 

@@ -8,19 +8,21 @@
   <form class="mt-3 col-sm-12 mx-auto">
     <div class="form-row">
       <div class="form-group col-md-12">
-        <textarea id="diagnosis" name="name" rows="10" cols="80" class="form-control" placeholder="Enter Patient Diagnosis" v-model="diagData"></textarea>
+        <textarea id="diagnosis" name="name" rows="10" cols="80" class="form-control" placeholder="Enter Patient Diagnosis" v-model="diagData" autofocus></textarea>
       </div>
     </div>
   </form>
 
-  <div class="buttons-div">
-
+  <div class="buttons-div d-none d-lg-block">
     <button @click.prevent="showMainForm" class="btn btn-sm float-left"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>&nbsp;Back</button>
-
     <button @click.prevent="showMed" class="btn btn-sm float-right">Next&nbsp;<i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
-
     <button class="btn btn-sm quitbtn" @click.prevent="quitProcess">Quit Adding This User&nbsp;<i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+  </div>
 
+  <div class="buttons-div-second d-lg-none d-block">
+    <button @click.prevent="showMainForm" class="btn btn-sm btn-block"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>&nbsp;Back</button>
+    <button @click.prevent="showMed" class="btn btn-sm btn-block">Next&nbsp;<i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
+    <button class="btn btn-sm btn-block" @click.prevent="quitProcess">Quit Adding This User&nbsp;<i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
   </div>
 
 </div>
@@ -82,5 +84,15 @@ export default {
 
 .quitbtn {
   margin-left: 15%;
+}
+
+.btn-block {
+  background: #e166e1;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-weight: bold;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 </style>

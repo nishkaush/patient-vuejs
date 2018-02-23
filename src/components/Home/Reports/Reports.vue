@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       minQty: "",
-      reportUrl: "https://intense-castle-52320.herokuapp.com/report",
+      // reportUrl: "http://localhost:3000/report",
       reportArr: []
     }
   },
@@ -37,7 +37,7 @@ export default {
           icon: "error",
         });
       }
-      axios.get(`${this.reportUrl}/lowStock/${this.minQty}`).then((res) => {
+      axios.get(`${this.$store.state.myUrl}/report/lowStock/${this.minQty}`).then((res) => {
         if (res.data.status === "success") {
           return this.reportArr = res.data.reportArr;
         }

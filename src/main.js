@@ -18,7 +18,7 @@ router.beforeEach((to, from, next) => {
       return next("/");
     }
     axios.defaults.headers.common['Authorization'] = token;
-    axios.get("https://intense-castle-52320.herokuapp.com/token-verify").then((res) => {
+    axios.get(`${store.state.myUrl}/token-verify`).then((res) => {
       if (res.data.valid === true) {
         return next();
       }

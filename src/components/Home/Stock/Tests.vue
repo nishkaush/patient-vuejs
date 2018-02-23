@@ -59,7 +59,7 @@ export default {
       showTestSearch: false,
       testTitleAdd: "",
       testSearchTerm: "",
-      testUrl: "https://intense-castle-52320.herokuapp.com/stock",
+      // testUrl: "http://localhost:3000/stock",
       testFound: true,
       testsArr: [],
       allTestsFromDB: []
@@ -90,7 +90,7 @@ export default {
           indexToSplice = this.testsArr.indexOf(e);
         }
       });
-      axios.post(`${this.testUrl}/deleteTest`, {
+      axios.post(`${this.$store.state.myUrl}/stock/deleteTest`, {
         id: event.target.dataset.id
       }).then((res) => {
         if (res.data.status = "success") {
@@ -112,7 +112,7 @@ export default {
         });
       }
       this.searchTestStockSpinner = true;
-      axios.get(`${this.testUrl}/searchTests/${this.testSearchTerm}`).then((res) => {
+      axios.get(`${this.$store.state.myUrl}/stock/searchTests/${this.testSearchTerm}`).then((res) => {
         if (res.data.status === "success") {
           this.testFound = true;
           this.searchTestStockSpinner = false;
@@ -145,7 +145,7 @@ export default {
           icon: "error",
         });
       }
-      axios.post(`${this.testUrl}/updateTest`, {
+      axios.post(`${this.$store.state.myUrl}/stock/updateTest`, {
         name: myInput.value,
         id: event.target.dataset.id
       }).then((res) => {
@@ -182,7 +182,7 @@ export default {
         });
       }
       this.addTestStockSpinner = true;
-      axios.post(`${this.testUrl}/addNewTest`, {
+      axios.post(`${this.$store.state.myUrl}/stock/addNewTest`, {
         name: this.testTitleAdd
       }).then((res) => {
         if (res.data.status === "success") {
@@ -207,7 +207,7 @@ export default {
   },
   mounted() {
     if (this.allTestsFromDB.length === 0) {
-      axios.get(`${this.testUrl}/getAllTests`).then((res) => {
+      axios.get(`${this.$store.state.myUrl}/stock/getAllTests`).then((res) => {
         if (res.data.status === "success") {
           this.allTestsFromDB = res.data.allTestList;
         }

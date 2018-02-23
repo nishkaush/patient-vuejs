@@ -55,7 +55,7 @@ export default {
       signupSpinner: false,
       isVisible: true,
       errorMessage: "",
-      url: "https://intense-castle-52320.herokuapp.com",
+      // url: "https://intense-castle-52320.herokuapp.com",
       // url: "http://localhost:3000",
       loginData: {
         email: "",
@@ -71,13 +71,12 @@ export default {
     loginSubmit() {
       let vm = this;
       vm.loginSpinner = true;
-      axios.post(`${this.url}/login`, {
+      axios.post(`${this.$store.state.myUrl}/login`, {
         data: this.loginData
       }).then((res) => {
         if (res.data.token) {
           sessionStorage.setItem("token", res.data.token);
           axios.defaults.headers.common['Authorization'] = res.data.token;
-          // vm.$refs.lform.reset();
           return this.$router.push({
             path: "home"
           });
@@ -89,7 +88,7 @@ export default {
     signupSubmit() {
       let vm = this;
       vm.signupSpinner = true;
-      axios.post(`${vm.url}/signup`, {
+      axios.post(`${vm.$store.state.myUrl}/signup`, {
         data: vm.signupData
       }).then((res) => {
         vm.$refs.sform.reset();
@@ -120,7 +119,7 @@ button {
 h1 {
   letter-spacing: 3px;
   padding: 8% 5% 0% 5%;
-  color: black;
+  color: forestgreen;
   font-family: open-sans;
   font-size: 2em;
   font-weight: 600;

@@ -34,14 +34,20 @@
 
   </form>
 
-  <div class="buttons-div">
-
+  <div class="buttons-div d-none d-lg-block">
     <button @click.prevent="showMed" class="btn btn-sm float-left"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>&nbsp;Back</button>
 
     <button @click.prevent="showFinal" class="btn btn-sm float-right">Finish&nbsp;<i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
 
     <button class="btn btn-sm quitbtn" @click.prevent="quitProcess">Quit Adding This User&nbsp;<i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+  </div>
 
+  <div class="buttons-div-second d-block d-lg-none">
+    <button @click.prevent="showMed" class="btn btn-block"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>&nbsp;Back</button>
+
+    <button @click.prevent="showFinal" class="btn btn-block">Finish&nbsp;<i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
+
+    <button class="btn btn-block" @click.prevent="quitProcess">Quit Adding This User&nbsp;<i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
   </div>
 
 </div>
@@ -111,7 +117,7 @@ export default {
     }
   },
   mounted() {
-    axios.get("https://intense-castle-52320.herokuapp.com/stock/getAllTests").then((res) => {
+    axios.get(`${this.$store.state.myUrl}/stock/getAllTests`).then((res) => {
       if (res.data.status === "success") {
         return this.allTestList = res.data.allTestList;
       }
@@ -181,5 +187,13 @@ i:hover {
   font-family: avenir;
   color: #e35d6a;
   font-size: 0.9em;
+}
+
+.btn-block {
+  background: #4c8bff;
+  padding: 1.5%;
+  font-weight: bold;
+  /*text-transform: uppercase;*/
+  letter-spacing: 1px;
 }
 </style>

@@ -107,7 +107,7 @@ export default {
       qtyAddValue: "",
       searchTerm: "",
       searchResultsArr: [],
-      stockUrl: "https://intense-castle-52320.herokuapp.com/stock",
+      // stockUrl: "http://localhost:3000/stock",
       noResults: false,
       lastTwoIcons: false
     }
@@ -152,7 +152,7 @@ export default {
         });
       }
       this.searchMedStockSpinner = true;
-      axios.get(`${this.stockUrl}/search/${this.searchTerm}`).then((res) => {
+      axios.get(`${this.$store.state.myUrl}/stock/search/${this.searchTerm}`).then((res) => {
         if (res.data.status === "success" && res.data.medArr.length !== 0) {
           this.noResults = false;
           this.searchMedStockSpinner = false;
@@ -170,7 +170,7 @@ export default {
       });
     },
     deleteMedStock(event) {
-      axios.post(`${this.stockUrl}/deleteMedicine`, {
+      axios.post(`${this.$store.state.myUrl}/stock/deleteMedicine`, {
         id: event.target.dataset.id
       }).then((res) => {
         if (res.data.status === "success") {
@@ -213,7 +213,7 @@ export default {
           icon: "error",
         });
       } else {
-        axios.post(`${this.stockUrl}/updateMedStock`, payload).then((res) => {
+        axios.post(`${this.$store.state.myUrl}/stock/updateMedStock`, payload).then((res) => {
           if (res.data.status === "success") {
             let indexToSplice = "";
             this.searchResultsArr.forEach((e) => {
@@ -284,7 +284,7 @@ export default {
       let flag = true;
       if (vm.titleAddValue && this.categoryAddValue && this.qtyAddValue) {
         vm.addMedStockSpinner = true;
-        axios.get(`${this.stockUrl}/getAllMedicines`).then((res) => {
+        axios.get(`${this.$store.state.myUrl}/stock/getAllMedicines`).then((res) => {
           if (res.data.status === "success") {
             res.data.allMedList.forEach((e) => {
               if (vm.titleAddValue.toUpperCase() === e.name.toUpperCase()) {

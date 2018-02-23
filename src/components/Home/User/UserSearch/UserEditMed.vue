@@ -169,7 +169,7 @@ export default {
           medicine: this.medArr,
           tests: this.testArr,
           _id: this.myPatient._id,
-          opdFee: this.myPatient.opd //<<<<<<<<<<<<--------------------
+          opdFee: this.myPatient.opd
         }).then((res) => {
           if (res === true) {
             this.textArea = "";
@@ -179,7 +179,7 @@ export default {
             vm.finishPrescriptionSpinner = false;
             return swal({
               title: "New Prescription saved!",
-              text: "View Details in Medical History, click OK to continue",
+              text: `OPD NUMBER - ${vm.opdNumber}. View other details in Medical History.`,
               icon: "success",
             });
           }
@@ -210,11 +210,14 @@ export default {
   computed: {
     myPatient() {
       return this.$store.state.userSearchMod.patientToEdit;
+    },
+    opdNumber() {
+      return this.$store.state.userSearchMod.opdNumber;
     }
   },
   mounted() {
     if (this.medicinesListing.length === 0) {
-      axios.get("https://intense-castle-52320.herokuapp.com/stock/getAllMedicines").then((res) => {
+      axios.get(`${this.$store.state.myUrl}/stock/getAllMedicines`).then((res) => {
         if (res.data.status === "success") {
           return this.medicinesListing = res.data.allMedList;
         }
@@ -222,7 +225,7 @@ export default {
     }
 
     if (this.testsListing.length === 0) {
-      axios.get("https://intense-castle-52320.herokuapp.com/stock/getAllTests").then((res) => {
+      axios.get(`${this.$store.state.myUrl}/stock/getAllTests`).then((res) => {
         if (res.data.status === "success") {
           return this.testsListing = res.data.allTestList;
         }

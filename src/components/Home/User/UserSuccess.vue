@@ -7,6 +7,7 @@
     <h3>{{patientName}} was saved.</h3>
     <hr>
     <h5>Patient Number - [{{patientNumber}}]</h5>
+    <h5>OPD Number - {{opdNumber}}</h5>
   </div>
   <div class="col-sm-8 mx-auto pt-5 pb-5" v-if="patientNumber==='notfound'">
     <h3>Oops something went wrong while saving patient. Please try again.</h3>
@@ -30,21 +31,26 @@ export default {
     },
     patientName() {
       return this.$store.state.userMod.form.name.toUpperCase();
+    },
+    opdNumber() {
+      return this.$store.state.userMod.opdNumber;
     }
   },
-  mounted() {
-    if (this.patientNumber && this.patientNumber !== 'notfound') {
-      swal({
-        title: "Excellent!",
-        text: "Patient saved successfully, click OK to see additional info",
-        icon: "success",
-      });
-    } else if (this.patientNumber === "notfound") {
-      swal({
-        title: "Oops",
-        text: "Something went wrong while adding patient, please try again",
-        icon: "error",
-      });
+  watch: {
+    patientNumber() {
+      if (this.patientNumber && this.patientNumber !== 'notfound') {
+        swal({
+          title: "Excellent!",
+          text: "Patient saved successfully, click OK to see additional info",
+          icon: "success",
+        });
+      } else if (this.patientNumber === "notfound") {
+        swal({
+          title: "Oops",
+          text: "Something went wrong while adding patient, please try again",
+          icon: "error",
+        });
+      }
     }
   }
 }

@@ -22,12 +22,11 @@ import UserMainForm from './UserMainForm.vue'
 import UserDiag from './UserDiag.vue'
 import UserMed from './UserMed.vue'
 import UserTest from './UserTest.vue'
-// import UserFinal from './UserFinal.vue'
 import UserSuccess from './UserSuccess.vue'
 export default {
   data() {
     return {
-      url: "https://intense-castle-52320.herokuapp.com/user",
+      // url: "http://localhost:3000/user",
       submitMessage: "",
       pass: ""
     }

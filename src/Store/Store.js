@@ -16,6 +16,10 @@ import {
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+  state: {
+    myUrl: "http://localhost:3000",
+    // myUrl: "https://intense-castle-52320.herokuapp.com",
+  },
   modules: {
     userMod: userModule,
     userSearchMod: userSearchModule,

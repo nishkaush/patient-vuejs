@@ -4,7 +4,8 @@ import moment from 'moment';
 export const stockModule = {
   namespaced: true,
   state: {
-    url: "https://intense-castle-52320.herokuapp.com"
+    url: "http://localhost:3000",
+    // url: "https://intense-castle-52320.herokuapp.com",
   },
   getters: {},
   mutations: {},

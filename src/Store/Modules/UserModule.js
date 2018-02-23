@@ -5,7 +5,9 @@ export const userModule = {
 
 
   state: {
-    url: "https://intense-castle-52320.herokuapp.com",
+    url: "http://localhost:3000",
+    // url: "https://intense-castle-52320.herokuapp.com",
+    opdNumber: "",
     currentComp: "",
     patientNumber: "",
     form: {
@@ -96,7 +98,7 @@ export const userModule = {
 
   actions: {
     getAllMedicinesFromDB(context) {
-      axios.get("https://intense-castle-52320.herokuapp.com/stock/getAllMedicines").then((res) => {
+      axios.get(`${context.state.url}/stock/getAllMedicines`).then((res) => {
         if (res.data.status === "success") {
           context.commit("settingUpAllMedList", {
             allMedListDB: res.data.allMedList
@@ -121,9 +123,10 @@ export const userModule = {
     },
     submitToDatabase(context, payload) {
       axios.post(`${context.state.url}/user/add`, context.state).then((res) => {
-        // context.state.currentComp = "userSuccess";
         if (res.data.saved) {
+          console.log(res.data.opdNumber);
           context.state.patientNumber = res.data.patientNumber;
+          context.state.opdNumber = res.data.opdNumber;
         } else {
           context.state.patientNumber = res.data.patientNumber;
         }

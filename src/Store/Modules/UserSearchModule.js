@@ -4,10 +4,12 @@ import moment from 'moment';
 export const userSearchModule = {
   namespaced: true,
   state: {
-    url: "https://intense-castle-52320.herokuapp.com",
+    url: "http://localhost:3000",
+    // url: "https://intense-castle-52320.herokuapp.com",
     currentView: "searchbar",
     patientToEdit: "",
-    originalDob: ""
+    originalDob: "",
+    opdNumber: ""
   },
 
 
@@ -73,6 +75,7 @@ export const userSearchModule = {
       return axios.post(`${context.state.url}/user/addPrescription`, payload).then((res) => {
         if (res.data.update === 'success') {
           context.state.patientToEdit = res.data.updatedPatient;
+          context.state.opdNumber = res.data.opdNumber;
           context.commit("issueDateFormat");
           return true;
         }
